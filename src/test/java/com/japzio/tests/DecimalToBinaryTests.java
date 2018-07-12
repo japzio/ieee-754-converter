@@ -1,42 +1,29 @@
 package com.japzio.tests;
 
-import com.japzio.decbinconverter.dectobin.DecimalToBinary;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
+import com.japzio.decbinconverter.dectobin.DecimalToBinary754;
 import org.junit.Test;
 
-import java.util.regex.Pattern;
+import static org.junit.Assert.assertEquals;
+
 
 public class DecimalToBinaryTests {
 
+  DecimalToBinary754 decimalToBinary = new DecimalToBinary754("23.054");
+
   @Test
   public void getExponentTest() {
-    assertEquals(7, DecimalToBinary.getExponent("10101001"));
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void getExponentExceptionTest() {
-    assertNotNull(DecimalToBinary.getExponent("01010100"));
-  }
-
-  @Test
-
-  public void getBinaryFromIntegralTest() {
-    assertEquals("11000010", DecimalToBinary.getBinaryFromIntegral(194));
+    assertEquals(4, decimalToBinary.getExponent());
   }
 
 
   @Test
-  public void getBinaryFromFractionaTest() {
+  public void getIntegralBinaryTest() {
+    assertEquals("10111", String.join("", decimalToBinary.getIntegralBinary()));
+  }
 
-    Pattern pattern = Pattern.compile("^10100000");
-    assertTrue(
-            pattern.matcher(
-                    DecimalToBinary.getBinaryFromFractional(625, 10)
-            ).find());
+  @Test
+  public void getFractionalBinaryTest() {
+    assertEquals("00001101110100101111000", String.join("", decimalToBinary.getFractionalBinary()));
   }
 
 }

@@ -2,7 +2,6 @@ package com.japzio.decbinconverter;
 
 import com.japzio.decbinconverter.dectobin.DecimalToBinary;
 
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class ApplicationMain {
@@ -12,14 +11,18 @@ public class ApplicationMain {
   public static void main(String args[]) {
 
 
-    Scanner scanner = new Scanner(System.in);
+    //Scanner scanner = new Scanner(System.in);
 
-    System.out.print("Input Decimal : ");
-    String input = scanner.next();
+    //System.out.print("Input Decimal : ");
+    //String input = scanner.next();
 
-    logger.info("" + input);
-    logger.info("Integral : " + DecimalToBinary.getBinaryFromIntegral(Integer.parseInt(input)));
-    logger.info("Fractional : " + DecimalToBinary.getBinaryFromFractional(Integer.parseInt(input), 32));
+    DecimalToBinary decToBin = new DecimalToBinary("23.054");
+
+    System.out.println("Integral          : " + decToBin.getIntegral());
+    System.out.println("Integral Binary   : " + String.join("", decToBin.getIntegralBinary()));
+    System.out.println("Fractional        : " + decToBin.getFractional());
+    System.out.println("Fractional Binary : " + String.join("", decToBin.getFractionalBinary()));
+    System.out.println("Final Binary      : " + decToBin.toStringBinary());
 
   }
 

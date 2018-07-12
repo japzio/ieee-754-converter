@@ -2,41 +2,44 @@ package com.japzio.decbinconverter.dectobin;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
-public  class DecimalToBinary {
+public class DecimalToBinary {
 
-  private static final Logger logger = Logger.getLogger(DecimalToBinary.class.getName());
+  private String decimal;
 
-  public static int getExponent(String integralBinary) throws IllegalArgumentException {
+  public DecimalToBinary(String decimal) {
 
-    Pattern pattern = Pattern.compile("^0.*");
-
-    if ( pattern.matcher(integralBinary).find() ) {
-      throw new IllegalArgumentException("should only start with 1");
-    }
-
-    return integralBinary.length() - 1;
+    this.decimal = decimal;
 
   }
 
-  public static String getBinaryFromIntegral(int decimalInput) {
+  public String getIntegral() {
+
+    String[] decimalSplit = decimal.split("\\.");
+
+    if ( decimalSplit.length == 0 ) {
+      throw new IllegalArgumentException("Could be your input is empty or invalid!");
+    }
+
+    return decimalSplit[0];
+  }
+
+  public List<String> getIntegralBinary() {
+
+    int integral = Integer.parseInt(this.getIntegral());
 
     List<String> moduloResults = new ArrayList<>();
     List<String> binaryDigits = new ArrayList<>();
 
     int bit = 0;
 
-    logger.info("Starting repeated division convertion...");
+    while( integral > 0){
 
-    while( decimalInput > 0){
-
-      bit = decimalInput % 2;
+      bit = integral % 2;
 
       moduloResults.add(String.valueOf(bit));
 
-      decimalInput = decimalInput / 2;
+      integral = integral / 2;
 
     }
 
@@ -44,18 +47,28 @@ public  class DecimalToBinary {
       binaryDigits.add(String.valueOf(moduloResults.get(x)));
     }
 
-    return String.join("", binaryDigits);
+    return binaryDigits;
 
   }
 
-  public static String getBinaryFromFractional(int fractional, int limit) {
+  public String getFractional() {
+
+    String[] decimalSplit = decimal.split("\\.");
+
+    if ( decimalSplit.length == 0 ) {
+      throw new IllegalArgumentException("Could be your input is empty or invalid or just a whole number!");
+    }
+
+    return "." + decimalSplit[1];
+  }
+
+  public List<String> getFractionalBinary() {
 
     List<String> binaryDigits = new ArrayList<>();
 
-    double franctionalDouble = Double.valueOf("." + String.valueOf(fractional));
+    int limit = 23;
 
-
-    logger.info("Computing fractional part as " + String.valueOf(franctionalDouble));
+    double franctionalDouble = Double.parseDouble(this.getFractional());
 
     while ( limit != 0) {
 
@@ -65,15 +78,26 @@ public  class DecimalToBinary {
 
       binaryDigits.add(franctionalDoubleSplit[0]);
 
-      franctionalDouble = Double.valueOf("." + franctionalDoubleSplit[1]);
+      franctionalDouble = Double.parseDouble("." + franctionalDoubleSplit[1]);
 
       limit--;
 
     }
 
-    return String.join("", binaryDigits);
+    return binaryDigits;
 
   }
 
-}
+  public String toStringBinary() {
+    return new StringBuilder()
+            .append(String.join("", this.getIntegralBinary()))
+            .append(".")
+            .append(String.join("", this.getFractionalBinary()))
+            .toString();
+  }
 
+  public String toString() {
+    return this.decimal;
+  }
+
+}
