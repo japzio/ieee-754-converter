@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.util.regex.Pattern;
 
-public class ApplicationMainTests {
+public class DecimalToBinaryTests {
 
   @Test
   public void getExponentTest() {
