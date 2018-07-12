@@ -2,6 +2,7 @@ package com.japzio.decbinconverter.dectobin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class DecimalToBinary {
 
@@ -13,6 +14,18 @@ public class DecimalToBinary {
 
   }
 
+  public int getSign() {
+
+    Pattern pattern = Pattern.compile("^-");
+
+    return pattern.matcher(this.decimal).find() ? 1 : 0;
+
+  }
+
+  public String getDecimal() {
+    return this.decimal;
+  }
+
   public String getIntegral() {
 
     String[] decimalSplit = decimal.split("\\.");
@@ -21,33 +34,14 @@ public class DecimalToBinary {
       throw new IllegalArgumentException("Could be your input is empty or invalid!");
     }
 
-    return decimalSplit[0];
+    return decimalSplit[0].replace("-", "");
   }
 
   public List<String> getIntegralBinary() {
 
-    int integral = Integer.parseInt(this.getIntegral());
 
-    List<String> moduloResults = new ArrayList<>();
-    List<String> binaryDigits = new ArrayList<>();
 
-    int bit = 0;
-
-    while( integral > 0){
-
-      bit = integral % 2;
-
-      moduloResults.add(String.valueOf(bit));
-
-      integral = integral / 2;
-
-    }
-
-    for (int x = moduloResults.size() - 1 ; x >=0 ; x-- ) {
-      binaryDigits.add(String.valueOf(moduloResults.get(x)));
-    }
-
-    return binaryDigits;
+    return this.decimalToBinary(getIntegral());
 
   }
 
@@ -98,6 +92,33 @@ public class DecimalToBinary {
 
   public String toString() {
     return this.decimal;
+  }
+
+  protected List<String> decimalToBinary(String decimal) {
+
+      int integral = Integer.parseInt(decimal);
+
+      List<String> moduloResults = new ArrayList<>();
+      List<String> binaryDigits = new ArrayList<>();
+
+      int bit = 0;
+
+      while( integral > 0){
+
+        bit = integral % 2;
+
+        moduloResults.add(String.valueOf(bit));
+
+        integral = integral / 2;
+
+      }
+
+      for (int x = moduloResults.size() - 1 ; x >=0 ; x-- ) {
+        binaryDigits.add(String.valueOf(moduloResults.get(x)));
+      }
+
+      return binaryDigits;
+
   }
 
 }
