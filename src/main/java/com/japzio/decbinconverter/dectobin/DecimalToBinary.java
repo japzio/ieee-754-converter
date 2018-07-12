@@ -3,14 +3,21 @@ package com.japzio.decbinconverter.dectobin;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 public  class DecimalToBinary {
 
   private static final Logger logger = Logger.getLogger(DecimalToBinary.class.getName());
 
-  public static int getExponent(String integralBinary) {
+  public static int getExponent(String integralBinary) throws IllegalArgumentException {
 
-    return integralBinary.length();
+    Pattern pattern = Pattern.compile("^0.*");
+
+    if ( pattern.matcher(integralBinary).find() ) {
+      throw new IllegalArgumentException("should only start with 1");
+    }
+
+    return integralBinary.length() - 1;
 
   }
 
