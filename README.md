@@ -24,3 +24,7 @@ JDK 7 or higher
 ~~~
 java -jar decbinconverter-with-dependencies.jar
 ~~~
+
+## Author 
+
+[@japzio](https://github.com/japzio)

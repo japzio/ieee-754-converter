@@ -15,6 +15,10 @@ public class DecimalToBinaryTests {
     assertEquals(4, decimalToBinary.getExponent());
   }
 
+  @Test
+  public void getSign() {
+    assertEquals(0, decimalToBinary.getSign());
+  }
 
   @Test
   public void getIntegralBinaryTest() {

@@ -17,3 +17,4 @@
 
 - [ ] Accept 32 bit binary representation
 - [ ] Split Sign | Exponent | Mantissa
+- [ ] ...
