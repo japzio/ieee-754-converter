@@ -1,4 +1,4 @@
-package com.japzio.decbinconverter.bintodec;
+package com.japzio.converter.bintodec;
 
 public class BinaryToDecimal {
 

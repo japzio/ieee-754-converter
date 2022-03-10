@@ -1,8 +1,7 @@
-package com.japzio.decbinconverter.dectobin;
+package com.japzio.converter.dectobin;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class DecimalToBinary754 extends  DecimalToBinary {
 

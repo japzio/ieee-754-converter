@@ -1,13 +1,13 @@
-package com.japzio.decbinconverter;
+package com.japzio.converter;
 
-import com.japzio.decbinconverter.dectobin.DecimalToBinary754;
+import com.japzio.converter.dectobin.DecimalToBinary754;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class ApplicationMain {
+public class IEEE754MainApp {
 
-  private static final Logger logger = Logger.getLogger(ApplicationMain.class.getName());
+  private static final Logger logger = Logger.getLogger(IEEE754MainApp.class.getName());
 
   public static void main(String args[]) {
 

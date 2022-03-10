@@ -1,4 +1,4 @@
-package com.japzio.decbinconverter.dectobin;
+package com.japzio.converter.dectobin;
 
 import java.util.ArrayList;
 import java.util.List;

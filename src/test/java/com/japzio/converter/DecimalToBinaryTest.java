@@ -1,12 +1,12 @@
-package com.japzio.tests;
+package com.japzio.converter;
 
-import com.japzio.decbinconverter.dectobin.DecimalToBinary754;
+import com.japzio.converter.dectobin.DecimalToBinary754;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 
-public class DecimalToBinaryTests {
+public class DecimalToBinaryTest {
 
   DecimalToBinary754 decimalToBinary = new DecimalToBinary754("23.054");
 
